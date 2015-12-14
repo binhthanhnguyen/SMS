@@ -1,0 +1,102 @@
+<% provide :title, @student.user.name %>
+<div class="row">
+  <div class="col-md-4">
+    <%= image_tag "default_avatar", class: "avatar img-responsive img-circle" %>
+    <h3><%= @student.user.name %></h3>
+  </div>
+
+  <div class="col-md-8">
+    <%= render "student_info" %>
+  </div>
+</div>
+
+<div class="container">
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#courses">Courses</a></li>
+    <li><a data-toggle="tab" href="#subjects">Subjects</a></li>
+    <li><a data-toggle="tab" href="#classrooms">Classrooms</a></li>
+    <li><a data-toggle="tab" href="#info">Info</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="courses" class="tab-pane fade in active">
+      <h3>Courses</h3>
+      <table class="table table-bordered table-hover">
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+        </tr>
+        <% @courses.each do |course| %>
+          <tr data-link= "<%= course_path(course)%>">
+            <td><%= course.name %></td>
+
+            <td><%= course.description %></td>
+
+            <td><%= course.enrollments.find_by(student: @student).start_date %></td>
+
+            <td>
+              <%= course.enrollments.find_by(student: @student).end_date %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+    <div id="subjects" class="tab-pane fade">
+      <h3>Subjects</h3>
+      <table class="table table-bordered table-hover">
+        <tr>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Description</th>
+          <th>Mark</th>
+        </tr>
+        <% @subjects.each do |subject| %>
+          <tr data-link= "<%= subject_path(subject)%>">
+            <td><%= subject.name %></td>
+
+            <td class= "text-right"><%= subject.credits %></td>
+
+            <td><%= subject.description %></td>
+
+            <td><%= subject.marks.find_by(student: @student).value %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+    <div id="classrooms" class="tab-pane fade">
+      <h3>Classrooms</h3>
+      <table class="table table-bordered table-hover">
+        <tr>
+          <th>Name</th>
+          <th>Subject</th>
+          <th>Lecturer</th>
+          <th>Location</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+        </tr>
+        <% @classrooms.each do |classroom| %>
+          <tr data-link= "<%= classroom_path(classroom)%>">
+            <td><%= classroom.name %></td>
+
+            <td><%= classroom.subject.name unless classroom.subject.nil?%></td>
+
+            <td><%= classroom.lecturer.user.name unless classroom.lecturer.nil?%></td>
+
+            <td><%= classroom.location %></td>
+
+            <td><%= classroom.start_date %></td>
+
+            <td><%= classroom.end_date %></td>
+          </tr>
+        <% end %>
+      </table>
+
+    </div>
+    <div id="info" class="tab-pane fade">
+      <h3>Student information</h3>
+      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+    </div>
+  </div>
+</div>

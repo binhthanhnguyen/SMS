@@ -1,0 +1,14 @@
+<h1>Courses</h1>
+<table class="table table-bordered table-hover">
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+  <% @courses.each do |course| %>
+    <tr data-link= "<%= course_path(course)%>">
+      <td><%= course.name %></td>
+
+      <td><%= course.description %></td>
+    </tr>
+  <% end %>
+</table>

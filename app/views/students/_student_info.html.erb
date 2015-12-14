@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-md-4">
+    <h4><b>Email:</b></h4>
+    <h4><b>Grade point average:</b></h4>
+    <h4><b>Major:</b></h4>
+    <h4><b>Date of Joining:</b></h4>
+  </div>
+  <div class="col-md-8">
+    <h4><%= @student.user.email %></h4>
+    <h4><%= @student.grade_point_average %></h4>
+    <h4>
+      <%=link_to @student.major.name, major_path(@student.major) unless @student.major.nil? %>
+    </h4>
+    <h4><%= @student.date_of_joining %></h4>
+  </div>
+</div>

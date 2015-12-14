@@ -1,0 +1,23 @@
+<h1>Lecturers</h1>
+<table class="table table-bordered table-hover">
+  <tr>
+    <th>Name</th>
+    <th>Date of Birth</th>
+    <th>Date of Joining</th>
+    <th>Salary ($)</th>
+    <th>Email</th>
+  </tr>
+  <% @lecturers.each do |lecturer| %>
+    <tr data-link= "<%= lecturer_path(lecturer)%>">
+      <td><%= lecturer.user.name %></td>
+
+      <td><%= lecturer.date_of_birth %></td>
+
+      <td><%= lecturer.date_of_joining %></td>
+
+      <td class="text-right"><%= lecturer.salary %></td>
+
+      <td><%= lecturer.user.email %></td>
+    </tr>
+  <% end %>
+</table>

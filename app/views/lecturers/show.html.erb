@@ -1,0 +1,11 @@
+<% provide :title, @lecturer.user.name %>
+<div class="row">
+  <div class="col-md-4">
+    <%= image_tag "default_avatar", class: "avatar img-responsive img-circle" %>
+    <h3><%= @lecturer.user.name %></h3>
+  </div>
+
+  <div class="col-md-8">
+    <%= render "lecturer_info" %>
+  </div>
+</div>

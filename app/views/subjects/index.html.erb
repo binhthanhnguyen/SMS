@@ -1,0 +1,15 @@
+<h1>Subjects</h1>
+<table class="table table-bordered table-hover">
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Credits</th>
+  </tr>
+  <% @subjects.each do |subject| %>
+    <tr data-link= "<%= subject_path(subject)%>">
+      <td><%= subject.name %></td>
+      <td><%= subject.description %></td>
+      <td><%= subject.credits %></td>
+    </tr>
+  <% end %>
+</table>

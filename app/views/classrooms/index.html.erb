@@ -1,0 +1,24 @@
+<h1>Classrooms</h1>
+<table class="table table-bordered table-hover">
+  <tr>
+    <th>Name</th>
+    <th>Subject</th>
+    <th>Lecturer</th>
+    <th>Location</th>
+    <th>Start date</th>
+    <th>End date</th>
+  </tr>
+  <% @classrooms.each do |classroom| %>
+    <tr data-link= "<%= classroom_path(classroom)%>">
+      <td><%= classroom.name %></td>
+
+      <td><%= classroom.subject.name unless classroom.subject.nil? %></td>
+
+      <td><%= classroom.lecturer.user.name unless classroom.lecturer.nil? %></td>
+
+      <td><%= classroom.location %></td>
+      <td><%= classroom.start_date %></td>
+      <td><%= classroom.end_date %></td>
+    </tr>
+  <% end %>
+</table>
